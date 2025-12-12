@@ -1,0 +1,16 @@
+{
+    "name": "thofman/knowledge-base",
+    "description": "Knowledge base of talks/blogposts",
+    "type": "library",
+    "require": {
+        "php": "^8.4",
+        "symfony/console": "^8.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "thofman\\KnowledgeBase\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
