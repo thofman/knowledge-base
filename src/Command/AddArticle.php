@@ -21,13 +21,15 @@ final class AddArticle extends BaseCommand
         /** @var QuestionHelper $helper */
         $helper = $this->getHelper('question');
         $authorQuestion = new Question('Please enter the name of the author: ', '');
-        $authorQuestion->setValidator(function (string $value): string {
-            if (trim($value) === '') {
-                throw new RuntimeException('Author cannot be empty');
-            }
+        $authorQuestion->setValidator(
+            function (string $value): string {
+                if (trim($value) === '') {
+                    throw new RuntimeException('Author cannot be empty');
+                }
 
-            return $value;
-        });
+                return $value;
+            }
+        );
         $author = $helper->ask($input, $output, $authorQuestion);
         $output->writeln(sprintf('You have just selected: %s', $author));
         $tagQuestion = new ChoiceQuestion(
