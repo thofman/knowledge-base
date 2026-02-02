@@ -22,7 +22,7 @@ final class AddArticle extends BaseCommand
         $helper = $this->getHelper('question');
         $authorQuestion = new Question('Please enter the name of the author: ', '');
         $authorQuestion->setValidator(
-            function (string $value): string {
+            static function (string $value): string {
                 if (trim($value) === '') {
                     throw new RuntimeException('Author cannot be empty');
                 }
