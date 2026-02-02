@@ -20,14 +20,6 @@ final class AddArticle extends BaseCommand
     {
         /** @var QuestionHelper $helper */
         $helper = $this->getHelper('question');
-        $tagQuestion = new ChoiceQuestion(
-            sprintf('Select tag (defaults to %s)', Tag::AGILE->getTitle()),
-            $this->getQuestionChoicesForTag(),
-            Tag::AGILE->value,
-        );
-        $chosenTag = $helper->ask($input, $output, $tagQuestion);
-        $tag = Tag::from($chosenTag);
-        $output->writeln(sprintf('You have just selected: %s', $tag->getTitle()));
         $authorQuestion = new Question('Please enter the name of the author: ', '');
         $authorQuestion->setValidator(function (string $value): string {
             if (trim($value) === '') {
@@ -38,6 +30,14 @@ final class AddArticle extends BaseCommand
         });
         $author = $helper->ask($input, $output, $authorQuestion);
         $output->writeln(sprintf('You have just selected: %s', $author));
+        $tagQuestion = new ChoiceQuestion(
+            sprintf('Select tag (defaults to %s)', Tag::AGILE->getTitle()),
+            $this->getQuestionChoicesForTag(),
+            Tag::AGILE->value,
+        );
+        $chosenTag = $helper->ask($input, $output, $tagQuestion);
+        $tag = Tag::from($chosenTag);
+        $output->writeln(sprintf('You have just selected: %s', $tag->getTitle()));
         return Command::SUCCESS;
     }
 
