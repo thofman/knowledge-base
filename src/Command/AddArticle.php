@@ -32,6 +32,26 @@ final class AddArticle extends BaseCommand
         );
         $author = $helper->ask($input, $output, $authorQuestion);
         $output->writeln(sprintf('You have just selected: %s', $author));
+        $urlQuestion = new Question('Please enter the URL of the article: ', '');
+        $urlQuestion->setValidator(
+            static function (string $value): string {
+                if (trim($value) === '') {
+                    throw new RuntimeException('URL cannot be empty');
+                }
+
+                if (!filter_var($value, FILTER_VALIDATE_URL)) {
+                    throw new RuntimeException('Value is not a URL');
+                }
+
+                if (parse_url($value, PHP_URL_SCHEME) !== 'https') {
+                    throw new RuntimeException('URL must be secure (https)');
+                }
+
+                return $value;
+            }
+        );
+        $url = $helper->ask($input, $output, $urlQuestion);
+        $output->writeln(sprintf('You have just typed: %s', $url));
         $tagQuestion = new ChoiceQuestion(
             sprintf('Select tag (defaults to %s)', Tag::AGILE->getTitle()),
             $this->getQuestionChoicesForTag(),
