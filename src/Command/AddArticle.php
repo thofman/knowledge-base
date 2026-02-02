@@ -61,7 +61,9 @@ final class AddArticle extends BaseCommand
         $tag = Tag::from($chosenTag);
         $output->writeln(sprintf('You have just selected: %s', $tag->getTitle()));
         $descriptionQuestion = new Question('Please enter the description of the article (optional): ', null);
-        $descriptionQuestion->setValidator(static fn(string $value): string => htmlspecialchars(strip_tags($value)));
+        $descriptionQuestion->setValidator(
+            static fn(?string $value): ?string => $value ? htmlspecialchars(strip_tags($value)) : null
+        );
         $description = $helper->ask($input, $output, $descriptionQuestion);
         $output->writeln(sprintf('You have just typed: %s', $description ?: ''));
         return Command::SUCCESS;
