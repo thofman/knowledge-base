@@ -27,7 +27,7 @@ final class AddArticle extends BaseCommand
                     throw new RuntimeException('Author cannot be empty');
                 }
 
-                return $value;
+                return htmlspecialchars(strip_tags($value));
             }
         );
         $author = $helper->ask($input, $output, $authorQuestion);
@@ -47,7 +47,7 @@ final class AddArticle extends BaseCommand
                     throw new RuntimeException('URL must be secure (https)');
                 }
 
-                return $value;
+                return htmlspecialchars(strip_tags($value));
             }
         );
         $url = $helper->ask($input, $output, $urlQuestion);
@@ -61,6 +61,7 @@ final class AddArticle extends BaseCommand
         $tag = Tag::from($chosenTag);
         $output->writeln(sprintf('You have just selected: %s', $tag->getTitle()));
         $descriptionQuestion = new Question('Please enter the description of the article (optional): ', null);
+        $descriptionQuestion->setValidator(static fn(string $value): string => htmlspecialchars(strip_tags($value)));
         $description = $helper->ask($input, $output, $descriptionQuestion);
         $output->writeln(sprintf('You have just typed: %s', $description ?: ''));
         return Command::SUCCESS;
