@@ -66,6 +66,20 @@ final class AddArticle extends BaseCommand
         );
         $description = $helper->ask($input, $output, $descriptionQuestion);
         $output->writeln(sprintf('You have just typed: %s', $description ?: ''));
+        $output->writeln(
+            implode(
+                PHP_EOL,
+                [
+                    '--------------------',
+                    'Summary:',
+                    sprintf('Author: %s', $author),
+                    sprintf('URL: %s', $url),
+                    sprintf('Tag: %s', $tag->getTitle()),
+                    sprintf('Description: %s', $description ?: ''),
+                    '--------------------',
+                ]
+            )
+        );
         return Command::SUCCESS;
     }
 
