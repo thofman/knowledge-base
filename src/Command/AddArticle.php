@@ -10,6 +10,7 @@ use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
 use thofman\KnowledgeBase\Tag\Tag;
 
@@ -93,6 +94,12 @@ final class AddArticle extends BaseCommand
                 ]
             )
         );
+        $confirmationQuestion = new ConfirmationQuestion('Continue adding article?');
+        if (!$helper->ask($input, $output, $confirmationQuestion)) {
+            $output->writeln('Nothing is added');
+            return Command::SUCCESS;
+        }
+
         return Command::SUCCESS;
     }
 
