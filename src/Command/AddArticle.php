@@ -32,6 +32,18 @@ final class AddArticle extends BaseCommand
         );
         $author = $helper->ask($input, $output, $authorQuestion);
         $output->writeln(sprintf('You have just selected: %s', $author));
+        $titleQuestion = new Question('Please enter the title of the article: ', '');
+        $titleQuestion->setValidator(
+            static function (string $value): string {
+                if (trim($value) === '') {
+                    throw new RuntimeException('Title cannot be empty');
+                }
+
+                return htmlspecialchars(strip_tags($value));
+            }
+        );
+        $title = $helper->ask($input, $output, $titleQuestion);
+        $output->writeln(sprintf('You have just typed: %s', $title));
         $urlQuestion = new Question('Please enter the URL of the article: ', '');
         $urlQuestion->setValidator(
             static function (string $value): string {
@@ -73,6 +85,7 @@ final class AddArticle extends BaseCommand
                     '--------------------',
                     'Summary:',
                     sprintf('Author: %s', $author),
+                    sprintf('Title: %s', $title),
                     sprintf('URL: %s', $url),
                     sprintf('Tag: %s', $tag->getTitle()),
                     sprintf('Description: %s', $description ?: ''),
