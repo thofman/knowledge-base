@@ -100,6 +100,30 @@ final class AddArticle extends BaseCommand
             return Command::SUCCESS;
         }
 
+        $markdownFilesDirectory = __DIR__ . '/../../knowledge-base-markdown-files';
+        $output->writeln($markdownFilesDirectory);
+        $authorAndTitle = sprintf('%s_%s', $author, $title);
+        $fileName = preg_replace('/[^A-Za-z0-9-_]+/', '_', $authorAndTitle);
+        $lowerCasedFilename = strtolower($fileName);
+        $fileNameWithExtension = sprintf('%s.md', $lowerCasedFilename);
+        $directoryAndFileNameWithExtension = sprintf('%s/%s', $markdownFilesDirectory, $fileNameWithExtension);
+        $templateFile = __DIR__ . '/../Helper/template.md';
+        $output->writeln($templateFile);
+        copy($templateFile, $directoryAndFileNameWithExtension);
+        $fileContents = file_get_contents($directoryAndFileNameWithExtension);
+        $output->writeln($fileContents);
+        $fileContents1 = preg_replace('/##author##/', $author, $fileContents);
+        $output->writeln($fileContents1);
+        $fileContents2 = preg_replace('/##title##/', $title, $fileContents1);
+        $output->writeln($fileContents2);
+        $fileContents3 = preg_replace('/##url##/', $url, $fileContents2);
+        $output->writeln($fileContents3);
+        $fileContents4 = preg_replace('/##tag##/', $tag->getTitle(), $fileContents3);
+        $output->writeln($fileContents4);
+        $fileContents5 = preg_replace('/##description##/', $description ?: '', $fileContents4);
+        $output->writeln($fileContents5);
+        file_put_contents($directoryAndFileNameWithExtension, $fileContents5);
+        $output->writeln(sprintf('Article with .md-file "%s" is added', $fileNameWithExtension));
         return Command::SUCCESS;
     }
 
