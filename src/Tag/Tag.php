@@ -9,12 +9,14 @@ enum Tag: string implements EnumWithTitle
 {
     case AGILE = 'Agile';
     case PHP = 'Php';
+    case OOP = 'Object-oriented Programming';
 
     public function getTitle(): string
     {
         return match ($this) {
             self::AGILE => 'Agile',
             self::PHP => 'PHP',
+            self::OOP => 'Object-oriented Programming',
         };
     }
 }
