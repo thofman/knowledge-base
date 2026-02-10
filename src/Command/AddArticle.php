@@ -66,13 +66,13 @@ final class AddArticle extends BaseCommand
         $url = $helper->ask($input, $output, $urlQuestion);
         $output->writeln(sprintf('You have just typed: %s', $url));
         $tagQuestion = new ChoiceQuestion(
-            sprintf('Select tag (defaults to %s)', Tag::AGILE->getTitle()),
+            sprintf('Select tag (defaults to %s)', Tag::AGILE->value),
             $this->getQuestionChoicesForTag(),
             Tag::AGILE->value,
         );
         $chosenTag = $helper->ask($input, $output, $tagQuestion);
         $tag = Tag::from($chosenTag);
-        $output->writeln(sprintf('You have just selected: %s', $tag->getTitle()));
+        $output->writeln(sprintf('You have just selected: %s', $tag->value));
         $descriptionQuestion = new Question('Please enter the description of the article (optional): ', null);
         $descriptionQuestion->setValidator(
             static fn(?string $value): ?string => $value ? htmlspecialchars(strip_tags($value)) : null
@@ -88,7 +88,7 @@ final class AddArticle extends BaseCommand
                     sprintf('Author: %s', $author),
                     sprintf('Title: %s', $title),
                     sprintf('URL: %s', $url),
-                    sprintf('Tag: %s', $tag->getTitle()),
+                    sprintf('Tag: %s', $tag->value),
                     sprintf('Description: %s', $description ?: ''),
                     '--------------------',
                 ]
@@ -118,7 +118,7 @@ final class AddArticle extends BaseCommand
         $output->writeln($fileContents2);
         $fileContents3 = preg_replace('/##url##/', $url, $fileContents2);
         $output->writeln($fileContents3);
-        $fileContents4 = preg_replace('/##tag##/', $tag->getTitle(), $fileContents3);
+        $fileContents4 = preg_replace('/##tag##/', $tag->value, $fileContents3);
         $output->writeln($fileContents4);
         $fileContents5 = preg_replace('/##description##/', $description ?: '', $fileContents4);
         $output->writeln($fileContents5);
@@ -134,7 +134,7 @@ final class AddArticle extends BaseCommand
     {
         $choices = [];
         foreach (Tag::cases() as $case) {
-            $choices[$case->value] = $case->getTitle();
+            $choices[$case->value] = $case->value;
         }
         return $choices;
     }
