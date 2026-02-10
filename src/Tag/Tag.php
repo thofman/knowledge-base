@@ -8,7 +8,7 @@ use thofman\KnowledgeBase\Helper\EnumWithTitle;
 enum Tag: string implements EnumWithTitle
 {
     case AGILE = 'Agile';
-    case PHP = 'Php';
+    case PHP = 'PHP';
     case OOP = 'Object-oriented Programming';
 
     public function getTitle(): string
