@@ -6,6 +6,6 @@ namespace thofman\KnowledgeBase\Tag;
 enum Tag: string
 {
     case AGILE = 'Agile';
-    case PHP = 'PHP';
     case OOP = 'Object-oriented Programming';
+    case PHP = 'PHP';
 }
