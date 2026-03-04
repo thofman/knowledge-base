@@ -31,7 +31,7 @@ final class AddArticle extends BaseCommand
                     throw new RuntimeException('Author cannot be empty');
                 }
 
-                return htmlspecialchars(strip_tags($value));
+                return htmlspecialchars(strip_tags($validationResult->value));
             }
         );
         $author = $helper->ask($input, $output, $authorQuestion);
@@ -45,7 +45,7 @@ final class AddArticle extends BaseCommand
                     throw new RuntimeException('Title cannot be empty');
                 }
 
-                return htmlspecialchars(strip_tags($value));
+                return htmlspecialchars(strip_tags($validationResult->value));
             }
         );
         $title = $helper->ask($input, $output, $titleQuestion);
@@ -59,15 +59,15 @@ final class AddArticle extends BaseCommand
                     throw new RuntimeException('URL cannot be empty');
                 }
 
-                if (!filter_var($value, FILTER_VALIDATE_URL)) {
+                if (!filter_var($validationResult->value, FILTER_VALIDATE_URL)) {
                     throw new RuntimeException('Value is not a URL');
                 }
 
-                if (parse_url($value, PHP_URL_SCHEME) !== 'https') {
+                if (parse_url($validationResult->value, PHP_URL_SCHEME) !== 'https') {
                     throw new RuntimeException('URL must be secure (https)');
                 }
 
-                return htmlspecialchars(strip_tags($value));
+                return htmlspecialchars(strip_tags($validationResult->value));
             }
         );
         $url = $helper->ask($input, $output, $urlQuestion);

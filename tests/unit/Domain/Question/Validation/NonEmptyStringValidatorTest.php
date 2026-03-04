@@ -22,8 +22,8 @@ final class NonEmptyStringValidatorTest extends TestCase
 
     public static function provideDataToTestTheNonEmptyStringValidator(): Generator
     {
-        yield ['test', ValidationResult::valid()];
-        yield [' test ', ValidationResult::valid()];
+        yield ['test', ValidationResult::valid('test')];
+        yield [' test ', ValidationResult::valid('test')];
         yield ['', ValidationResult::invalid('The value cannot be empty')];
         yield [' ', ValidationResult::invalid('The value cannot be empty')];
     }

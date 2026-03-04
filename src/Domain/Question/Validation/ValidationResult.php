@@ -5,10 +5,11 @@ namespace thofman\KnowledgeBase\Domain\Question\Validation;
 
 final readonly class ValidationResult
 {
-    public static function valid(): self
+    public static function valid(string $value): self
     {
         return new self(
             isValid: true,
+            value: $value,
         );
     }
 
@@ -22,6 +23,7 @@ final readonly class ValidationResult
 
     private function __construct(
         public bool $isValid,
+        public string $value = '',
         public string $validationErrorMessage = '',
     ) {
     }
