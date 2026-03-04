@@ -17,6 +17,7 @@ use thofman\KnowledgeBase\Domain\Question\Sanitization\StringSanitizer;
 use thofman\KnowledgeBase\Domain\Question\Tag;
 use thofman\KnowledgeBase\Domain\Question\Validation\AlwaysValidValidator;
 use thofman\KnowledgeBase\Domain\Question\Validation\NonEmptyStringValidator;
+use thofman\KnowledgeBase\Domain\Question\Validation\UrlSchemeHttpsValidator;
 use thofman\KnowledgeBase\Domain\Question\Validation\UrlValidator;
 
 #[AsCommand(name: 'app:add-article', description: 'Add an article')]
@@ -55,8 +56,10 @@ final class AddArticle extends BaseCommand
                     throw new RuntimeException($validationResult->validationErrorMessage);
                 }
 
-                if (parse_url($validationResult->value, PHP_URL_SCHEME) !== 'https') {
-                    throw new RuntimeException('URL must be secure (https)');
+                $urlSchemeHttpsValidator = new UrlSchemeHttpsValidator($urlValidator);
+                $validationResult = $urlSchemeHttpsValidator->validate($value);
+                if (!$validationResult->isValid) {
+                    throw new RuntimeException($validationResult->validationErrorMessage);
                 }
 
                 return new StringSanitizer()->sanitize($validationResult->value);
