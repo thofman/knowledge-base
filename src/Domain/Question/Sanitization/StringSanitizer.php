@@ -7,6 +7,6 @@ final readonly class StringSanitizer
 {
     public function sanitize(string $value): string
     {
-        return htmlspecialchars(strip_tags($value));
+        return htmlspecialchars(strip_tags(trim($value)));
     }
 }
