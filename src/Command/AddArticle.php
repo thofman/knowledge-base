@@ -12,6 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
+use thofman\KnowledgeBase\Domain\Question\Validation\NonEmptyStringValidator;
 use thofman\KnowledgeBase\Tag\Tag;
 
 #[AsCommand(name: 'app:add-article', description: 'Add an article')]
@@ -24,7 +25,9 @@ final class AddArticle extends BaseCommand
         $authorQuestion = new Question('Please enter the name of the author: ', '');
         $authorQuestion->setValidator(
             static function (string $value): string {
-                if (trim($value) === '') {
+                $nonEmptyStringValidator = new NonEmptyStringValidator();
+                $validationResult = $nonEmptyStringValidator->validate($value);
+                if (!$validationResult->isValid) {
                     throw new RuntimeException('Author cannot be empty');
                 }
 
@@ -36,7 +39,9 @@ final class AddArticle extends BaseCommand
         $titleQuestion = new Question('Please enter the title of the article: ', '');
         $titleQuestion->setValidator(
             static function (string $value): string {
-                if (trim($value) === '') {
+                $nonEmptyStringValidator = new NonEmptyStringValidator();
+                $validationResult = $nonEmptyStringValidator->validate($value);
+                if (!$validationResult->isValid) {
                     throw new RuntimeException('Title cannot be empty');
                 }
 
@@ -48,7 +53,9 @@ final class AddArticle extends BaseCommand
         $urlQuestion = new Question('Please enter the URL of the article: ', '');
         $urlQuestion->setValidator(
             static function (string $value): string {
-                if (trim($value) === '') {
+                $nonEmptyStringValidator = new NonEmptyStringValidator();
+                $validationResult = $nonEmptyStringValidator->validate($value);
+                if (!$validationResult->isValid) {
                     throw new RuntimeException('URL cannot be empty');
                 }
 
