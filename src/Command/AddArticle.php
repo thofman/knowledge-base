@@ -12,6 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
+use thofman\KnowledgeBase\Domain\Question\Sanitization\StringSanitizer;
 use thofman\KnowledgeBase\Domain\Question\Validation\NonEmptyStringValidator;
 use thofman\KnowledgeBase\Tag\Tag;
 
@@ -31,7 +32,7 @@ final class AddArticle extends BaseCommand
                     throw new RuntimeException('Author cannot be empty');
                 }
 
-                return htmlspecialchars(strip_tags($validationResult->value));
+                return new StringSanitizer()->sanitize($validationResult->value);
             }
         );
         $author = $helper->ask($input, $output, $authorQuestion);
@@ -45,7 +46,7 @@ final class AddArticle extends BaseCommand
                     throw new RuntimeException('Title cannot be empty');
                 }
 
-                return htmlspecialchars(strip_tags($validationResult->value));
+                return new StringSanitizer()->sanitize($validationResult->value);
             }
         );
         $title = $helper->ask($input, $output, $titleQuestion);
@@ -67,7 +68,7 @@ final class AddArticle extends BaseCommand
                     throw new RuntimeException('URL must be secure (https)');
                 }
 
-                return htmlspecialchars(strip_tags($validationResult->value));
+                return new StringSanitizer()->sanitize($validationResult->value);
             }
         );
         $url = $helper->ask($input, $output, $urlQuestion);
@@ -82,7 +83,7 @@ final class AddArticle extends BaseCommand
         $output->writeln(sprintf('You have just selected: %s', $tag->value));
         $descriptionQuestion = new Question('Please enter the description of the article (optional): ', null);
         $descriptionQuestion->setValidator(
-            static fn(?string $value): ?string => $value ? htmlspecialchars(strip_tags($value)) : null
+            static fn(?string $value): ?string => $value ? new StringSanitizer()->sanitize($value) : null
         );
         $description = $helper->ask($input, $output, $descriptionQuestion);
         $output->writeln(sprintf('You have just typed: %s', $description ?: ''));
