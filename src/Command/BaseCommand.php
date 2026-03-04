@@ -5,6 +5,7 @@ namespace thofman\KnowledgeBase\Command;
 
 use LogicException;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\ConsoleOutputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -18,5 +19,12 @@ abstract class BaseCommand extends Command
         }
 
         return $this->execute($input, $output);
+    }
+
+    protected function getQuestionHelper(): QuestionHelper
+    {
+        /** @var QuestionHelper $questionHelper */
+        $questionHelper = $this->getHelper('question');
+        return $questionHelper;
     }
 }
