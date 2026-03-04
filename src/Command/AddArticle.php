@@ -23,20 +23,20 @@ final class AddArticle extends BaseCommand
 {
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        $helper = $this->getQuestionHelper();
+        $questionHelper = $this->getQuestionHelper();
         $authorQuestion = new TextQuestion(
             'Please enter the name of the author: ',
             new NonEmptyStringValidator('Author'),
             new StringSanitizer(),
         );
-        $author = $helper->ask($input, $output, $authorQuestion->getQuestion());
+        $author = $questionHelper->ask($input, $output, $authorQuestion->getQuestion());
         $output->writeln(sprintf('You have just selected: %s', $author));
         $titleQuestion = new TextQuestion(
             'Please enter the title of the article: ',
             new NonEmptyStringValidator('Title'),
             new StringSanitizer(),
         );
-        $title = $helper->ask($input, $output, $titleQuestion->getQuestion());
+        $title = $questionHelper->ask($input, $output, $titleQuestion->getQuestion());
         $output->writeln(sprintf('You have just typed: %s', $title));
         $urlQuestion = new TextQuestion(
             'Please enter the URL of the article: ',
@@ -48,10 +48,10 @@ final class AddArticle extends BaseCommand
             ),
             new StringSanitizer(),
         );
-        $url = $helper->ask($input, $output, $urlQuestion->getQuestion());
+        $url = $questionHelper->ask($input, $output, $urlQuestion->getQuestion());
         $output->writeln(sprintf('You have just typed: %s', $url));
         $tagQuestion = new TagQuestion();
-        $chosenTag = $helper->ask($input, $output, $tagQuestion->getQuestion());
+        $chosenTag = $questionHelper->ask($input, $output, $tagQuestion->getQuestion());
         $tag = Tag::from($chosenTag);
         $output->writeln(sprintf('You have just selected: %s', $tag->value));
         $descriptionQuestion = new TextQuestion(
@@ -59,7 +59,7 @@ final class AddArticle extends BaseCommand
             new AlwaysValidValidator(),
             new StringSanitizer(),
         );
-        $description = $helper->ask($input, $output, $descriptionQuestion->getQuestion());
+        $description = $questionHelper->ask($input, $output, $descriptionQuestion->getQuestion());
         $output->writeln(sprintf('You have just typed: %s', $description));
         $output->writeln(
             implode(
@@ -77,7 +77,7 @@ final class AddArticle extends BaseCommand
             )
         );
         $confirmationQuestion = new ConfirmationQuestion('Continue adding article?');
-        if (!$helper->ask($input, $output, $confirmationQuestion)) {
+        if (!$questionHelper->ask($input, $output, $confirmationQuestion)) {
             $output->writeln('Nothing is added');
             return Command::SUCCESS;
         }
