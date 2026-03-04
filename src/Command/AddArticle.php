@@ -12,6 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
+use thofman\KnowledgeBase\App\Question\TextQuestion;
 use thofman\KnowledgeBase\Domain\Question\Sanitization\StringSanitizer;
 use thofman\KnowledgeBase\Domain\Question\Validation\NonEmptyStringValidator;
 use thofman\KnowledgeBase\Tag\Tag;
@@ -23,19 +24,12 @@ final class AddArticle extends BaseCommand
     {
         /** @var QuestionHelper $helper */
         $helper = $this->getHelper('question');
-        $authorQuestion = new Question('Please enter the name of the author: ', '');
-        $authorQuestion->setValidator(
-            static function (string $value): string {
-                $nonEmptyStringValidator = new NonEmptyStringValidator('Author');
-                $validationResult = $nonEmptyStringValidator->validate($value);
-                if (!$validationResult->isValid) {
-                    throw new RuntimeException($validationResult->validationErrorMessage);
-                }
-
-                return new StringSanitizer()->sanitize($validationResult->value);
-            }
+        $authorQuestion = new TextQuestion(
+            'Please enter the name of the author: ',
+            new NonEmptyStringValidator('Author'),
+            new StringSanitizer(),
         );
-        $author = $helper->ask($input, $output, $authorQuestion);
+        $author = $helper->ask($input, $output, $authorQuestion->getQuestion());
         $output->writeln(sprintf('You have just selected: %s', $author));
         $titleQuestion = new Question('Please enter the title of the article: ', '');
         $titleQuestion->setValidator(
