@@ -26,10 +26,10 @@ final class AddArticle extends BaseCommand
         $authorQuestion = new Question('Please enter the name of the author: ', '');
         $authorQuestion->setValidator(
             static function (string $value): string {
-                $nonEmptyStringValidator = new NonEmptyStringValidator();
+                $nonEmptyStringValidator = new NonEmptyStringValidator('Author');
                 $validationResult = $nonEmptyStringValidator->validate($value);
                 if (!$validationResult->isValid) {
-                    throw new RuntimeException('Author cannot be empty');
+                    throw new RuntimeException($validationResult->validationErrorMessage);
                 }
 
                 return new StringSanitizer()->sanitize($validationResult->value);
@@ -40,10 +40,10 @@ final class AddArticle extends BaseCommand
         $titleQuestion = new Question('Please enter the title of the article: ', '');
         $titleQuestion->setValidator(
             static function (string $value): string {
-                $nonEmptyStringValidator = new NonEmptyStringValidator();
+                $nonEmptyStringValidator = new NonEmptyStringValidator('Title');
                 $validationResult = $nonEmptyStringValidator->validate($value);
                 if (!$validationResult->isValid) {
-                    throw new RuntimeException('Title cannot be empty');
+                    throw new RuntimeException($validationResult->validationErrorMessage);
                 }
 
                 return new StringSanitizer()->sanitize($validationResult->value);
@@ -54,10 +54,10 @@ final class AddArticle extends BaseCommand
         $urlQuestion = new Question('Please enter the URL of the article: ', '');
         $urlQuestion->setValidator(
             static function (string $value): string {
-                $nonEmptyStringValidator = new NonEmptyStringValidator();
+                $nonEmptyStringValidator = new NonEmptyStringValidator('URL');
                 $validationResult = $nonEmptyStringValidator->validate($value);
                 if (!$validationResult->isValid) {
-                    throw new RuntimeException('URL cannot be empty');
+                    throw new RuntimeException($validationResult->validationErrorMessage);
                 }
 
                 if (!filter_var($validationResult->value, FILTER_VALIDATE_URL)) {

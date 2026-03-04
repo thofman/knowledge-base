@@ -5,11 +5,16 @@ namespace thofman\KnowledgeBase\Domain\Question\Validation;
 
 final readonly class NonEmptyStringValidator implements Validator
 {
+    public function __construct(
+        private string $subject,
+    ) {
+    }
+
     public function validate(string $value): ValidationResult
     {
         $trimmedValue = trim($value);
         if ($trimmedValue === '') {
-            return ValidationResult::invalid('The value cannot be empty');
+            return ValidationResult::invalid(sprintf('%s cannot be empty', $this->subject));
         }
 
         return ValidationResult::valid($trimmedValue);
