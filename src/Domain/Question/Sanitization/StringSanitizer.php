@@ -7,6 +7,6 @@ final readonly class StringSanitizer
 {
     public function sanitize(string $value): string
     {
-        return htmlspecialchars(strip_tags(trim($value)));
+        return htmlspecialchars(strip_tags(trim($value)), ENT_NOQUOTES, 'UTF-8');
     }
 }
