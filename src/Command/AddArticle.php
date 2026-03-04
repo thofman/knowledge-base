@@ -31,19 +31,12 @@ final class AddArticle extends BaseCommand
         );
         $author = $helper->ask($input, $output, $authorQuestion->getQuestion());
         $output->writeln(sprintf('You have just selected: %s', $author));
-        $titleQuestion = new Question('Please enter the title of the article: ', '');
-        $titleQuestion->setValidator(
-            static function (string $value): string {
-                $nonEmptyStringValidator = new NonEmptyStringValidator('Title');
-                $validationResult = $nonEmptyStringValidator->validate($value);
-                if (!$validationResult->isValid) {
-                    throw new RuntimeException($validationResult->validationErrorMessage);
-                }
-
-                return new StringSanitizer()->sanitize($validationResult->value);
-            }
+        $titleQuestion = new TextQuestion(
+            'Please enter the title of the article: ',
+            new NonEmptyStringValidator('Title'),
+            new StringSanitizer(),
         );
-        $title = $helper->ask($input, $output, $titleQuestion);
+        $title = $helper->ask($input, $output, $titleQuestion->getQuestion());
         $output->writeln(sprintf('You have just typed: %s', $title));
         $urlQuestion = new Question('Please enter the URL of the article: ', '');
         $urlQuestion->setValidator(
