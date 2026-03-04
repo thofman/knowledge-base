@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace thofman\KnowledgeBase\Tag;
+namespace thofman\KnowledgeBase\Domain\Question;
 
 enum Tag: string
 {

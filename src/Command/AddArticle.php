@@ -14,9 +14,9 @@ use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
 use thofman\KnowledgeBase\App\Question\TextQuestion;
 use thofman\KnowledgeBase\Domain\Question\Sanitization\StringSanitizer;
+use thofman\KnowledgeBase\Domain\Question\Tag;
 use thofman\KnowledgeBase\Domain\Question\Validation\AlwaysValidValidator;
 use thofman\KnowledgeBase\Domain\Question\Validation\NonEmptyStringValidator;
-use thofman\KnowledgeBase\Tag\Tag;
 
 #[AsCommand(name: 'app:add-article', description: 'Add an article')]
 final class AddArticle extends BaseCommand
