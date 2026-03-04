@@ -3,14 +3,12 @@ declare(strict_types=1);
 
 namespace thofman\KnowledgeBase\Command;
 
-use RuntimeException;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
-use Symfony\Component\Console\Question\Question;
 use thofman\KnowledgeBase\App\Question\TagQuestion;
 use thofman\KnowledgeBase\App\Question\TextQuestion;
 use thofman\KnowledgeBase\Domain\Question\Sanitization\StringSanitizer;
@@ -42,24 +40,17 @@ final class AddArticle extends BaseCommand
         );
         $title = $helper->ask($input, $output, $titleQuestion->getQuestion());
         $output->writeln(sprintf('You have just typed: %s', $title));
-        $urlQuestion = new Question('Please enter the URL of the article: ', '');
-        $urlQuestion->setValidator(
-            static function (string $value): string {
-                $compositeValidator = new CompositeValidator(
-                    [
-                        new NonEmptyStringValidator('URL'),
-                        new UrlSchemeHttpsValidator(new UrlValidator()),
-                    ]
-                );
-                $validationResult = $compositeValidator->validate($value);
-                if (!$validationResult->isValid) {
-                    throw new RuntimeException($validationResult->validationErrorMessage);
-                }
-
-                return new StringSanitizer()->sanitize($validationResult->value);
-            }
+        $urlQuestion = new TextQuestion(
+            'Please enter the URL of the article: ',
+            new CompositeValidator(
+                [
+                    new NonEmptyStringValidator('URL'),
+                    new UrlSchemeHttpsValidator(new UrlValidator()),
+                ]
+            ),
+            new StringSanitizer(),
         );
-        $url = $helper->ask($input, $output, $urlQuestion);
+        $url = $helper->ask($input, $output, $urlQuestion->getQuestion());
         $output->writeln(sprintf('You have just typed: %s', $url));
         $tagQuestion = new TagQuestion();
         $chosenTag = $helper->ask($input, $output, $tagQuestion->getQuestion());
