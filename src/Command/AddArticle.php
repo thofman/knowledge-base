@@ -17,6 +17,7 @@ use thofman\KnowledgeBase\Domain\Question\Sanitization\StringSanitizer;
 use thofman\KnowledgeBase\Domain\Question\Tag;
 use thofman\KnowledgeBase\Domain\Question\Validation\AlwaysValidValidator;
 use thofman\KnowledgeBase\Domain\Question\Validation\NonEmptyStringValidator;
+use thofman\KnowledgeBase\Domain\Question\Validation\UrlValidator;
 
 #[AsCommand(name: 'app:add-article', description: 'Add an article')]
 final class AddArticle extends BaseCommand
@@ -48,8 +49,10 @@ final class AddArticle extends BaseCommand
                     throw new RuntimeException($validationResult->validationErrorMessage);
                 }
 
-                if (!filter_var($validationResult->value, FILTER_VALIDATE_URL)) {
-                    throw new RuntimeException('Value is not a URL');
+                $urlValidator = new UrlValidator();
+                $validationResult = $urlValidator->validate($value);
+                if (!$validationResult->isValid) {
+                    throw new RuntimeException($validationResult->validationErrorMessage);
                 }
 
                 if (parse_url($validationResult->value, PHP_URL_SCHEME) !== 'https') {
