@@ -14,6 +14,7 @@ use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
 use thofman\KnowledgeBase\App\Question\TextQuestion;
 use thofman\KnowledgeBase\Domain\Question\Sanitization\StringSanitizer;
+use thofman\KnowledgeBase\Domain\Question\Validation\AlwaysValidValidator;
 use thofman\KnowledgeBase\Domain\Question\Validation\NonEmptyStringValidator;
 use thofman\KnowledgeBase\Tag\Tag;
 
@@ -68,12 +69,13 @@ final class AddArticle extends BaseCommand
         $chosenTag = $helper->ask($input, $output, $tagQuestion);
         $tag = Tag::from($chosenTag);
         $output->writeln(sprintf('You have just selected: %s', $tag->value));
-        $descriptionQuestion = new Question('Please enter the description of the article (optional): ', null);
-        $descriptionQuestion->setValidator(
-            static fn(?string $value): ?string => $value ? new StringSanitizer()->sanitize($value) : null
+        $descriptionQuestion = new TextQuestion(
+            'Please enter the description of the article (optional): ',
+            new AlwaysValidValidator(),
+            new StringSanitizer(),
         );
-        $description = $helper->ask($input, $output, $descriptionQuestion);
-        $output->writeln(sprintf('You have just typed: %s', $description ?: ''));
+        $description = $helper->ask($input, $output, $descriptionQuestion->getQuestion());
+        $output->writeln(sprintf('You have just typed: %s', $description));
         $output->writeln(
             implode(
                 PHP_EOL,
@@ -84,7 +86,7 @@ final class AddArticle extends BaseCommand
                     sprintf('Title: %s', $title),
                     sprintf('URL: %s', $url),
                     sprintf('Tag: %s', $tag->value),
-                    sprintf('Description: %s', $description ?: ''),
+                    sprintf('Description: %s', $description),
                     '--------------------',
                 ]
             )
@@ -115,7 +117,7 @@ final class AddArticle extends BaseCommand
         $output->writeln($fileContents3);
         $fileContents4 = preg_replace('/##tag##/', $tag->value, $fileContents3);
         $output->writeln($fileContents4);
-        $fileContents5 = preg_replace('/##description##/', $description ?: '', $fileContents4);
+        $fileContents5 = preg_replace('/##description##/', $description, $fileContents4);
         $output->writeln($fileContents5);
         file_put_contents($directoryAndFileNameWithExtension, $fileContents5);
         $output->writeln(sprintf('Article with .md-file "%s" is added', $fileNameWithExtension));
