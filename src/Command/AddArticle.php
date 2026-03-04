@@ -16,6 +16,7 @@ use thofman\KnowledgeBase\App\Question\TextQuestion;
 use thofman\KnowledgeBase\Domain\Question\Sanitization\StringSanitizer;
 use thofman\KnowledgeBase\Domain\Question\Tag;
 use thofman\KnowledgeBase\Domain\Question\Validation\AlwaysValidValidator;
+use thofman\KnowledgeBase\Domain\Question\Validation\CompositeValidator;
 use thofman\KnowledgeBase\Domain\Question\Validation\NonEmptyStringValidator;
 use thofman\KnowledgeBase\Domain\Question\Validation\UrlSchemeHttpsValidator;
 use thofman\KnowledgeBase\Domain\Question\Validation\UrlValidator;
@@ -44,20 +45,13 @@ final class AddArticle extends BaseCommand
         $urlQuestion = new Question('Please enter the URL of the article: ', '');
         $urlQuestion->setValidator(
             static function (string $value): string {
-                $nonEmptyStringValidator = new NonEmptyStringValidator('URL');
-                $validationResult = $nonEmptyStringValidator->validate($value);
-                if (!$validationResult->isValid) {
-                    throw new RuntimeException($validationResult->validationErrorMessage);
-                }
-
-                $urlValidator = new UrlValidator();
-                $validationResult = $urlValidator->validate($value);
-                if (!$validationResult->isValid) {
-                    throw new RuntimeException($validationResult->validationErrorMessage);
-                }
-
-                $urlSchemeHttpsValidator = new UrlSchemeHttpsValidator($urlValidator);
-                $validationResult = $urlSchemeHttpsValidator->validate($value);
+                $compositeValidator = new CompositeValidator(
+                    [
+                        new NonEmptyStringValidator('URL'),
+                        new UrlSchemeHttpsValidator(new UrlValidator()),
+                    ]
+                );
+                $validationResult = $compositeValidator->validate($value);
                 if (!$validationResult->isValid) {
                     throw new RuntimeException($validationResult->validationErrorMessage);
                 }
