@@ -9,9 +9,9 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
+use thofman\KnowledgeBase\App\Question\TagQuestion;
 use thofman\KnowledgeBase\App\Question\TextQuestion;
 use thofman\KnowledgeBase\Domain\Question\Sanitization\StringSanitizer;
 use thofman\KnowledgeBase\Domain\Question\Tag;
@@ -61,12 +61,8 @@ final class AddArticle extends BaseCommand
         );
         $url = $helper->ask($input, $output, $urlQuestion);
         $output->writeln(sprintf('You have just typed: %s', $url));
-        $tagQuestion = new ChoiceQuestion(
-            sprintf('Select tag (defaults to %s)', Tag::AGILE->value),
-            $this->getQuestionChoicesForTag(),
-            Tag::AGILE->value,
-        );
-        $chosenTag = $helper->ask($input, $output, $tagQuestion);
+        $tagQuestion = new TagQuestion();
+        $chosenTag = $helper->ask($input, $output, $tagQuestion->getQuestion());
         $tag = Tag::from($chosenTag);
         $output->writeln(sprintf('You have just selected: %s', $tag->value));
         $descriptionQuestion = new TextQuestion(
@@ -125,14 +121,5 @@ final class AddArticle extends BaseCommand
             sprintf('You can use this as commit message: "%s"`', sprintf('Add article: %s - %s', $author, $title))
         );
         return Command::SUCCESS;
-    }
-
-    private function getQuestionChoicesForTag(): array
-    {
-        $choices = [];
-        foreach (Tag::cases() as $case) {
-            $choices[$case->value] = $case->value;
-        }
-        return $choices;
     }
 }
