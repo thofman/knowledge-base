@@ -7,3 +7,7 @@
 ## Object-oriented Programming
 
 - [Rafael Dohms - Writing code that lasts (Object Calisthenics)](rafael_dohms_writing_code_that_lasts_object_calisthenics_.md)
+
+## PHP
+
+- [Frédéric Bouchery - Why use static closures?](fr_d_ric_bouchery_why_use_static_closures_.md)
