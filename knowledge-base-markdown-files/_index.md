@@ -17,3 +17,4 @@
 - [Jeffrey Palermo - The Onion Architecture : part 1](jeffrey_palermo_the_onion_architecture_part_1.md)
 - [Jeffrey Palermo - The Onion Architecture : part 2](jeffrey_palermo_the_onion_architecture_part_2.md)
 - [Jeffrey Palermo - The Onion Architecture : part 3](jeffrey_palermo_the_onion_architecture_part_3.md)
+- [Jeffrey Palermo - Onion Architecture: Part 4 – After Four Years](jeffrey_palermo_onion_architecture_part_4_after_four_years.md)
