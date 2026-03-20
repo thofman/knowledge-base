@@ -9,4 +9,5 @@ enum Tag: string
     case GIT = 'Git';
     case OOP = 'Object-oriented Programming';
     case PHP = 'PHP';
+    case SOFTWARE_ARCHITECTURE = 'Software Architecture';
 }
