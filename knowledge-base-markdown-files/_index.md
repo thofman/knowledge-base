@@ -11,3 +11,7 @@
 ## PHP
 
 - [Frédéric Bouchery - Why use static closures?](fr_d_ric_bouchery_why_use_static_closures_.md)
+
+## Software Architecture
+
+- [Jeffrey Palermo - The Onion Architecture : part 1](jeffrey_palermo_the_onion_architecture_part_1.md)
