@@ -14,6 +14,7 @@
 
 ## Software Architecture
 
+- [Alistair Cockburn - The Hexagonal (Ports &amp; Adapters) Architecture](alistair_cockburn_the_hexagonal_ports_amp_adapters_architecture.md)
 - [Jeffrey Palermo - The Onion Architecture : part 1](jeffrey_palermo_the_onion_architecture_part_1.md)
 - [Jeffrey Palermo - The Onion Architecture : part 2](jeffrey_palermo_the_onion_architecture_part_2.md)
 - [Jeffrey Palermo - The Onion Architecture : part 3](jeffrey_palermo_the_onion_architecture_part_3.md)
