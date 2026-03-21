@@ -2,6 +2,9 @@
     "name": "thofman/knowledge-base",
     "description": "Knowledge base of talks/blogposts",
     "type": "library",
+    "config": {
+        "sort-packages": true
+    },
     "require": {
         "php": "^8.4",
         "symfony/console": "^8.0"
