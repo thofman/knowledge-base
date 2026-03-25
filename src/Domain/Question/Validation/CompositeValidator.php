@@ -9,7 +9,7 @@ final readonly class CompositeValidator implements Validator
      * @param list<Validator> $validators
      */
     public function __construct(
-         private array $validators,
+        private array $validators,
     ) {
     }
 
