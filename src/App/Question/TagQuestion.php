@@ -18,6 +18,9 @@ final readonly class TagQuestion implements ArticleQuestion
         );
     }
 
+    /**
+     * @return array<string, string>
+     */
     private function getQuestionChoicesForTag(): array
     {
         $choices = [];
