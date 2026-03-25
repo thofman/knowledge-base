@@ -19,7 +19,8 @@
         "captainhook/hook-installer": "^1.0",
         "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^13.0",
-        "ramsey/conventional-commits": "^1.7"
+        "ramsey/conventional-commits": "^1.7",
+        "squizlabs/php_codesniffer": "^4.0"
     },
     "license": "MIT",
     "autoload": {
