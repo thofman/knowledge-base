@@ -22,6 +22,9 @@
                 "action": "\\CaptainHook\\App\\Hook\\PHP\\Action\\Linting"
             },
             {
+                "action": "vendor/bin/phpcs -s --colors src tests"
+            },
+            {
                 "action": "vendor/bin/phpunit"
             },
             {
