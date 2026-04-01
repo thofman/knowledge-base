@@ -6,6 +6,7 @@ namespace thofman\KnowledgeBase\Infrastructure\FrontMatter;
 
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 use thofman\KnowledgeBase\Domain\FrontMatter\FrontMatter;
+use thofman\KnowledgeBase\Domain\FrontMatter\FrontMatterCollection;
 use thofman\KnowledgeBase\Domain\FrontMatter\FrontMatterRepository;
 use thofman\KnowledgeBase\Domain\MarkdownFile\MarkdownFile;
 use thofman\KnowledgeBase\Domain\Question\Tag;
@@ -29,6 +30,16 @@ final class SpatieYamlFrontMatterRepository implements FrontMatterRepository
         return array_map(
             $this->getFrontMatter(...),
             $markdownFiles,
+        );
+    }
+
+    public function getFrontMatterCollection(array $markdownFiles): FrontMatterCollection
+    {
+        return new FrontMatterCollection(
+            ...array_map(
+                $this->getFrontMatter(...),
+                $markdownFiles,
+            )
         );
     }
 }

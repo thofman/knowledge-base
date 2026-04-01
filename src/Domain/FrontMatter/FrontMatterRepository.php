@@ -15,4 +15,9 @@ interface FrontMatterRepository
      * @return list<FrontMatter>
      */
     public function getFrontMatters(array $markdownFiles): array;
+
+    /**
+     * @param list<MarkdownFile> $markdownFiles
+     */
+    public function getFrontMatterCollection(array $markdownFiles): FrontMatterCollection;
 }
