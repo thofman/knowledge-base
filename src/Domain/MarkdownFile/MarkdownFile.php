@@ -20,4 +20,9 @@ final readonly class MarkdownFile
     {
         return $this->splFileInfo->getPathname();
     }
+
+    public function getFilename(): string
+    {
+        return $this->splFileInfo->getFilename();
+    }
 }
