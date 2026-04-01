@@ -9,6 +9,7 @@ use thofman\KnowledgeBase\Domain\FrontMatter\FrontMatter;
 use thofman\KnowledgeBase\Domain\FrontMatter\FrontMatterCollection;
 use thofman\KnowledgeBase\Domain\FrontMatter\FrontMatterRepository;
 use thofman\KnowledgeBase\Domain\MarkdownFile\MarkdownFile;
+use thofman\KnowledgeBase\Domain\MarkdownFile\MarkdownFileCollection;
 use thofman\KnowledgeBase\Domain\Question\Tag;
 
 final class SpatieYamlFrontMatterRepository implements FrontMatterRepository
@@ -33,12 +34,12 @@ final class SpatieYamlFrontMatterRepository implements FrontMatterRepository
         );
     }
 
-    public function getFrontMatterCollection(array $markdownFiles): FrontMatterCollection
+    public function getFrontMatterCollection(MarkdownFileCollection $markdownFileCollection): FrontMatterCollection
     {
         return new FrontMatterCollection(
             ...array_map(
                 $this->getFrontMatter(...),
-                $markdownFiles,
+                $markdownFileCollection->asArray(),
             )
         );
     }

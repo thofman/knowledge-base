@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace thofman\KnowledgeBase\Domain\FrontMatter;
 
 use thofman\KnowledgeBase\Domain\MarkdownFile\MarkdownFile;
+use thofman\KnowledgeBase\Domain\MarkdownFile\MarkdownFileCollection;
 
 interface FrontMatterRepository
 {
@@ -16,8 +17,5 @@ interface FrontMatterRepository
      */
     public function getFrontMatters(array $markdownFiles): array;
 
-    /**
-     * @param list<MarkdownFile> $markdownFiles
-     */
-    public function getFrontMatterCollection(array $markdownFiles): FrontMatterCollection;
+    public function getFrontMatterCollection(MarkdownFileCollection $markdownFileCollection): FrontMatterCollection;
 }
