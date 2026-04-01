@@ -26,14 +26,6 @@ final class SpatieYamlFrontMatterRepository implements FrontMatterRepository
         );
     }
 
-    public function getFrontMatters(array $markdownFiles): array
-    {
-        return array_map(
-            $this->getFrontMatter(...),
-            $markdownFiles,
-        );
-    }
-
     public function getFrontMatterCollection(MarkdownFileCollection $markdownFileCollection): FrontMatterCollection
     {
         return new FrontMatterCollection(
