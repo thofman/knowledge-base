@@ -32,4 +32,21 @@ final readonly class FrontMatterCollection implements IteratorAggregate
     {
         return $this->frontMatters;
     }
+
+    public function getSortedAscendingOnTagAuthorAndTitleCollection(): self
+    {
+        $frontMatters = $this->frontMatters;
+        uasort(
+            $frontMatters,
+            static function (FrontMatter $first, FrontMatter $second): int {
+                return strcasecmp($first->tag->value, $second->tag->value)
+                    ?: strcasecmp($first->author, $second->author)
+                    ?: strcasecmp($first->title, $second->title)
+                ;
+            }
+        );
+        return new self(
+            ...$frontMatters,
+        );
+    }
 }
