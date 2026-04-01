@@ -20,37 +20,37 @@ final class FrontMatterCollectionTest extends TestCase
     public function getSortedAscendingOnTagAuthorAndTitleCollection(): void
     {
         $frontMatterSoftwareAuthorB = new FrontMatter(
-            new MarkdownFile(new SplFileInfo('test')),
+            new MarkdownFile(new SplFileInfo(__DIR__ . '/test.md')),
             'Test author B',
             'Test content',
             Tag::SOFTWARE_ARCHITECTURE,
         );
         $frontMatterSoftwareAuthorAContentB = new FrontMatter(
-            new MarkdownFile(new SplFileInfo('test')),
+            new MarkdownFile(new SplFileInfo(__DIR__ . '/test.md')),
             'Test author A',
             'Test content B',
             Tag::SOFTWARE_ARCHITECTURE,
         );
         $frontMatterSoftwareAuthorAContentA = new FrontMatter(
-            new MarkdownFile(new SplFileInfo('test')),
+            new MarkdownFile(new SplFileInfo(__DIR__ . '/test.md')),
             'Test author A',
             'Test content A',
             Tag::SOFTWARE_ARCHITECTURE,
         );
         $frontMatterSoftwareAuthorA = new FrontMatter(
-            new MarkdownFile(new SplFileInfo('test')),
+            new MarkdownFile(new SplFileInfo(__DIR__ . '/test.md')),
             'Test author A',
             'Test content',
             Tag::SOFTWARE_ARCHITECTURE,
         );
         $frontMatterAgile = new FrontMatter(
-            new MarkdownFile(new SplFileInfo('test')),
+            new MarkdownFile(new SplFileInfo(__DIR__ . '/test.md')),
             'Test author',
             'Test content',
             Tag::AGILE,
         );
         $frontMatterPhp = new FrontMatter(
-            new MarkdownFile(new SplFileInfo('test')),
+            new MarkdownFile(new SplFileInfo(__DIR__ . '/test.md')),
             'Test author',
             'Test content',
             Tag::PHP,

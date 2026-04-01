@@ -10,4 +10,9 @@ final class ErrorMessage
     {
         return sprintf('%s should be "%s". Got: "%s"', ucfirst($subject), $expectedValue, $gotValue);
     }
+
+    public static function isNot(string $gotValue, string $expected): string
+    {
+        return sprintf('"%s" is not %s', $gotValue, $expected);
+    }
 }
