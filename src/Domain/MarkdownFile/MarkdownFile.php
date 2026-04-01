@@ -37,4 +37,9 @@ final readonly class MarkdownFile
     {
         return $this->splFileInfo->getFilename();
     }
+
+    public function isWritable(): bool
+    {
+        return $this->splFileInfo->isWritable();
+    }
 }

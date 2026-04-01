@@ -21,6 +21,9 @@ final readonly class IndexMarkdownFile
                 ErrorMessage::shouldBe('Filename', self::FILE_NAME, $markdownFile->getFilename())
             );
         }
+        if (!$this->markdownFile->isWritable()) {
+            throw new DomainException(ErrorMessage::isNot($this->markdownFile->getPathname(), 'writable'));
+        }
     }
 
     public function getFilename(): string
@@ -50,5 +53,10 @@ final readonly class IndexMarkdownFile
             $return .= PHP_EOL;
         }
         return $return;
+    }
+
+    public function reindexAndReplaceContents(FrontMatterCollection $frontMatterCollection): void
+    {
+        file_put_contents($this->markdownFile->getPathname(), $this->reindexAndReturn($frontMatterCollection));
     }
 }
