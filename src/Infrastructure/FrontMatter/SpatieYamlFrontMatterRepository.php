@@ -14,6 +14,16 @@ use thofman\KnowledgeBase\Domain\Question\Tag;
 
 final class SpatieYamlFrontMatterRepository implements FrontMatterRepository
 {
+    public function getFrontMatterCollection(MarkdownFileCollection $markdownFileCollection): FrontMatterCollection
+    {
+        return new FrontMatterCollection(
+            ...array_map(
+                $this->getFrontMatter(...),
+                $markdownFileCollection->asArray(),
+            )
+        );
+    }
+
     private function getFrontMatter(MarkdownFile $markdownFile): FrontMatter
     {
         $document = YamlFrontMatter::parseFile($markdownFile->getPathname());
@@ -23,16 +33,6 @@ final class SpatieYamlFrontMatterRepository implements FrontMatterRepository
             $document->matter('author'),
             $document->matter('title'),
             Tag::tryFrom($tags[array_key_first($tags)]),
-        );
-    }
-
-    public function getFrontMatterCollection(MarkdownFileCollection $markdownFileCollection): FrontMatterCollection
-    {
-        return new FrontMatterCollection(
-            ...array_map(
-                $this->getFrontMatter(...),
-                $markdownFileCollection->asArray(),
-            )
         );
     }
 }
