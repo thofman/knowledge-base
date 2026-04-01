@@ -12,19 +12,6 @@ use thofman\KnowledgeBase\Domain\MarkdownFile\MarkdownFilesDirectory;
 
 final class GlobMarkdownFileRepository implements MarkdownFileRepository
 {
-    public function getMarkdownFiles(MarkdownFilesDirectory $markdownFilesDirectory): array
-    {
-        $allMdFiles = glob($markdownFilesDirectory->getPathname() . '/*.md');
-        $mdFilesWithoutIndex = array_filter(
-            $allMdFiles,
-            static fn(string $file): bool => !str_ends_with($file, '_index.md'),
-        );
-        return array_map(
-            static fn(string $file): MarkdownFile => new MarkdownFile(new SplFileInfo($file)),
-            $mdFilesWithoutIndex,
-        );
-    }
-
     public function getMarkdownFileCollection(MarkdownFilesDirectory $markdownFilesDirectory): MarkdownFileCollection
     {
         $allMdFiles = glob($markdownFilesDirectory->getPathname() . '/*.md');
