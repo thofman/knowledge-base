@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace thofman\KnowledgeBase\tests\unit\Domain\Question\Validation;
+namespace thofman\KnowledgeBase\Tests\Unit\Domain\Question\Validation;
 
 use Generator;
 use PHPUnit\Framework\Attributes\DataProvider;

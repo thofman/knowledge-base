@@ -28,5 +28,10 @@
             "thofman\\KnowledgeBase\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "thofman\\KnowledgeBase\\Tests\\": "tests/"
+        }
+    },
     "minimum-stability": "stable"
 }
