@@ -13,17 +13,14 @@ use thofman\KnowledgeBase\Domain\MarkdownFile\MarkdownFilesDirectory;
 
 final readonly class GlobMarkdownFileRepository implements MarkdownFileRepository
 {
-    public function __construct(
-        private IndexMarkdownFile $indexMarkdownFile,
-    ) {
-    }
-
-    public function getMarkdownFileCollection(MarkdownFilesDirectory $markdownFilesDirectory): MarkdownFileCollection
-    {
+    public function getMarkdownFileCollection(
+        MarkdownFilesDirectory $markdownFilesDirectory,
+        IndexMarkdownFile $indexMarkdownFile,
+    ): MarkdownFileCollection {
         $allMdFiles = glob($markdownFilesDirectory->getPathname() . '/*.md');
         $mdFilesWithoutIndex = array_filter(
             $allMdFiles,
-            fn(string $file): bool => !str_ends_with($file, $this->indexMarkdownFile->getFilename()),
+            static fn(string $file): bool => !str_ends_with($file, $indexMarkdownFile->getFilename()),
         );
         return new MarkdownFileCollection(
             ...array_map(
