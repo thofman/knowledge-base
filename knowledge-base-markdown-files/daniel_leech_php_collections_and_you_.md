@@ -1,10 +1,10 @@
 ---
 title: PHP, Collections and You
-author: Dan Leech
+author: Daniel Leech
 tags: [PHP]
 ---
 
-# Dan Leech - PHP, Collections and You 🫵
+# Daniel Leech - PHP, Collections and You 🫵
 
 [https://www.dantleech.com/blog/2026/03/15/php-collections-and-you/](https://www.dantleech.com/blog/2026/03/15/php-collections-and-you/)
 
