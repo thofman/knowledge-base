@@ -10,13 +10,13 @@
 
 ## PHP
 
-- [Dan Leech - PHP, Collections and You 🫵](dan_leech_php_collections_and_you_.md)
+- [Dan Leech - PHP, Collections and You](dan_leech_php_collections_and_you_.md)
 - [Frédéric Bouchery - Why use static closures?](fr_d_ric_bouchery_why_use_static_closures_.md)
 
 ## Software Architecture
 
 - [Alistair Cockburn - The Hexagonal (Ports &amp; Adapters) Architecture](alistair_cockburn_the_hexagonal_ports_amp_adapters_architecture.md)
-- [Jeffrey Palermo - The Onion Architecture : part 1](jeffrey_palermo_the_onion_architecture_part_1.md)
-- [Jeffrey Palermo - The Onion Architecture : part 2](jeffrey_palermo_the_onion_architecture_part_2.md)
-- [Jeffrey Palermo - The Onion Architecture : part 3](jeffrey_palermo_the_onion_architecture_part_3.md)
-- [Jeffrey Palermo - The Onion Architecture: Part 4 – After Four Years](jeffrey_palermo_the_onion_architecture_part_4_after_four_years.md)
+- [Jeffrey Palermo - The Onion Architecture part 1](jeffrey_palermo_the_onion_architecture_part_1.md)
+- [Jeffrey Palermo - The Onion Architecture part 2](jeffrey_palermo_the_onion_architecture_part_2.md)
+- [Jeffrey Palermo - The Onion Architecture part 3](jeffrey_palermo_the_onion_architecture_part_3.md)
+- [Jeffrey Palermo - The Onion Architecture Part 4 – After Four Years](jeffrey_palermo_the_onion_architecture_part_4_after_four_years.md)
