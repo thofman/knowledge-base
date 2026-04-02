@@ -28,9 +28,11 @@ final class IndexMarkdownFiles extends BaseCommand
     {
         $pathnameDirectory = __DIR__ . '/../../../../knowledge-base-markdown-files';
         $pathnameIndexFile = $pathnameDirectory . '/_index.md';
+        $markdownFilesDirectory = new MarkdownFilesDirectory(new SplFileInfo($pathnameDirectory));
+        $indexMarkdownFile = new IndexMarkdownFile(new MarkdownFile(new SplFileInfo($pathnameIndexFile)));
         $this->indexService->reindexIndexMarkdownFile(
-            new MarkdownFilesDirectory(new SplFileInfo($pathnameDirectory)),
-            new IndexMarkdownFile(new MarkdownFile(new SplFileInfo($pathnameIndexFile)))
+            $markdownFilesDirectory,
+            $indexMarkdownFile,
         );
         return Command::SUCCESS;
     }
