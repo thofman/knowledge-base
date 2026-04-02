@@ -26,7 +26,6 @@ final class IndexMarkdownFiles extends BaseCommand
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        $output->writeln('You have chosen command "IndexMarkdownFiles"');
         $pathnameDirectory = __DIR__ . '/../../../../knowledge-base-markdown-files';
         $pathnameIndexFile = $pathnameDirectory . '/_index.md';
         $this->indexService->reindexIndexMarkdownFile(
