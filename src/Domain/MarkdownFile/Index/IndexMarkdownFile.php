@@ -26,6 +26,11 @@ final readonly class IndexMarkdownFile
         }
     }
 
+    public function getPathname(): string
+    {
+        return $this->markdownFile->getPathname();
+    }
+
     public function getFilename(): string
     {
         return $this->markdownFile->getFilename();

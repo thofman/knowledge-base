@@ -34,6 +34,13 @@ final class IndexMarkdownFiles extends BaseCommand
             $markdownFilesDirectory,
             $indexMarkdownFile,
         );
+        $output->writeln(
+            sprintf(
+                '<info>Reindexed index markdown file "%s" based on markdown files in directory "%s"</info>',
+                $indexMarkdownFile->getPathname(),
+                $markdownFilesDirectory->getPathname(),
+            )
+        );
         return Command::SUCCESS;
     }
 }
