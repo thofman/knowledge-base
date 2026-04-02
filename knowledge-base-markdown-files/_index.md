@@ -12,6 +12,7 @@
 
 - [Dan Leech - PHP, Collections and You](dan_leech_php_collections_and_you_.md)
 - [Frédéric Bouchery - Why use static closures?](fr_d_ric_bouchery_why_use_static_closures_.md)
+- [Sebastian Bergmann - Type-Safe Collections](sebastian_bergmann_type-safe_collections.md)
 
 ## Software Architecture
 
