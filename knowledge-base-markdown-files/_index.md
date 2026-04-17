@@ -4,6 +4,7 @@
 
 - [Johanna Rothman - How Good is Your Backlog? Part 1, Start with Ready Criteria](johanna_rothman_how_good_is_your_backlog_part_1_start_with_ready_criteria.md)
 - [Johanna Rothman - How Good is Your Backlog? Part 2, How to Shape the Work for Product Success](johanna_rothman_how_good_is_your_backlog_part_2_how_to_shape_the_work_for_product_success.md)
+- [Johanna Rothman - How Good is Your Backlog? Part 3, How to Assess Your Team’s Thinking Skills](johanna_rothman_how_good_is_your_backlog_part_3_how_to_assess_your_team_s_thinking_skills.md)
 
 ## Git
 
