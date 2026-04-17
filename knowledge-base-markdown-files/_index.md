@@ -1,5 +1,9 @@
 # Index of all articles
 
+## Agile
+
+- [Johanna Rothman - How Good is Your Backlog? Part 1, Start with Ready Criteria](johanna_rothman_how_good_is_your_backlog_part_1_start_with_ready_criteria.md)
+
 ## Git
 
 - [Chris Beams - How to Write a Git Commit Message](chris_beams_how_to_write_a_git_commit_message.md)
