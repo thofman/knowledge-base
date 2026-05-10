@@ -22,6 +22,7 @@ And it contains an index with all added articles. These articles help me underst
 - [PHP The Right Way](https://phptherightway.com/)
 - [Learn PHP The Right Way](https://github.com/ggelashvili/learnphptherightway-outline)
 - [PHP Quality Assurance](https://phpqa.io/)
+- [PHPReads](https://phpreads.com/)
 
 ## PHP tools
 
