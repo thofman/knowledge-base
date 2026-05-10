@@ -10,6 +10,7 @@
 
 - [Chris Beams - How to Write a Git Commit Message](chris_beams_how_to_write_a_git_commit_message.md)
 - [Markus Staab - Automate the process to find a regression commit](markus_staab_automate_the_process_to_find_a_regression_commit.md)
+- [Tobias van Beek - Using different git configurations](tobias_van_beek_using_different_git_configurations.md)
 
 ## Object-oriented Programming
 
