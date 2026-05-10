@@ -18,6 +18,7 @@
 
 ## PHP
 
+- [Andreas Möller - Normalizing composer.json](andreas_m_ller_normalizing_composer_json.md)
 - [Daniel Leech - PHP, Collections and You](daniel_leech_php_collections_and_you_.md)
 - [Frédéric Bouchery - Why use static closures?](fr_d_ric_bouchery_why_use_static_closures_.md)
 - [Mike Varenek - Introduction to PHP Closures](mike_varenek_introduction_to_php_closures.md)
