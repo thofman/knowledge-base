@@ -20,6 +20,7 @@ And it contains an index with all added articles. These articles help me underst
 - [PhpStorm IDE](https://www.jetbrains.com/phpstorm/)
 - [PHP.Watch](https://php.watch/)
 - [PHP The Right Way](https://phptherightway.com/)
+- [Learn PHP The Right Way](https://github.com/ggelashvili/learnphptherightway-outline)
 - [PHP Quality Assurance](https://phpqa.io/)
 
 ## PHP tools
