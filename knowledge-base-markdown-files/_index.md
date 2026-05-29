@@ -26,6 +26,7 @@
 - [Daniel Leech - Space - the Final Straw](daniel_leech_space_-_the_final_straw.md)
 - [Frédéric Bouchery - Why use static closures?](fr_d_ric_bouchery_why_use_static_closures_.md)
 - [Gabriel Olivério - Streams in PHP, What you really need to know](gabriel_oliv_rio_streams_in_php_what_you_really_need_to_know.md)
+- [Michał Kurzeja - Long-Running PHP in Production, WebSocket Servers That Never Sleep](micha_kurzeja_long-running_php_in_production_websocket_servers_that_never_sleep.md)
 - [Mike Varenek - Introduction to PHP Closures](mike_varenek_introduction_to_php_closures.md)
 - [Ondřej Mirtes - Using PHPStan to Extract Data About Your Codebase](ond_ej_mirtes_using_phpstan_to_extract_data_about_your_codebase.md)
 - [Sebastian Bergmann - Type-Safe Collections](sebastian_bergmann_type-safe_collections.md)
