@@ -108,7 +108,10 @@ final class AddArticle extends BaseCommand
         file_put_contents($directoryAndFileNameWithExtension, $fileContents5);
         $output->writeln(sprintf('Article with .md-file "%s" is added', $fileNameWithExtension));
         $output->writeln(
-            sprintf('You can use this as commit message: "%s"`', sprintf('Add article: %s - %s', $author, $title))
+            sprintf(
+                'You can use this as commit message: "%s"`',
+                sprintf('Add article: %s - %s', $author, $title)
+            )
         );
         return Command::SUCCESS;
     }
