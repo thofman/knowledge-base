@@ -110,7 +110,7 @@ final class AddArticle extends BaseCommand
         $output->writeln(
             sprintf(
                 'You can use this as commit message: "%s"`',
-                sprintf('Add article: %s - %s', $author, $title)
+                sprintf('feat(article): add article: %s - %s', $author, $title)
             )
         );
         return Command::SUCCESS;
