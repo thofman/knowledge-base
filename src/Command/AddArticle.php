@@ -31,14 +31,12 @@ final class AddArticle extends BaseCommand
             new StringSanitizer(),
         );
         $author = $questionHelper->ask($input, $output, $authorQuestion->getQuestion());
-        $output->writeln(sprintf('You have just selected: %s', $author));
         $titleQuestion = new TextQuestion(
             'Please enter the title of the article: ',
             new NonEmptyStringValidator('Title'),
             new StringSanitizer(),
         );
         $title = $questionHelper->ask($input, $output, $titleQuestion->getQuestion());
-        $output->writeln(sprintf('You have just typed: %s', $title));
         $urlQuestion = new TextQuestion(
             'Please enter the URL of the article: ',
             new CompositeValidator(
@@ -50,18 +48,15 @@ final class AddArticle extends BaseCommand
             new StringSanitizer(),
         );
         $url = $questionHelper->ask($input, $output, $urlQuestion->getQuestion());
-        $output->writeln(sprintf('You have just typed: %s', $url));
         $tagQuestion = new TagQuestion();
         $chosenTag = $questionHelper->ask($input, $output, $tagQuestion->getQuestion());
         $tag = Tag::from($chosenTag);
-        $output->writeln(sprintf('You have just selected: %s', $tag->value));
         $descriptionQuestion = new TextQuestion(
             'Please enter the description of the article (optional): ',
             new AlwaysValidValidator(),
             new StringSanitizer(),
         );
         $description = $questionHelper->ask($input, $output, $descriptionQuestion->getQuestion());
-        $output->writeln(sprintf('You have just typed: %s', $description));
         $output->writeln(
             implode(
                 PHP_EOL,
