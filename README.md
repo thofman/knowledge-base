@@ -19,6 +19,7 @@ And it contains an index with all added articles. These articles help me underst
 - [PHP manual](https://www.php.net/)
 - [PhpStorm IDE](https://www.jetbrains.com/phpstorm/)
 - [PHP.Watch](https://php.watch/)
+- [3v4l.org (online PHP shell)](https://3v4l.org/)
 - [PHP The Right Way](https://phptherightway.com/)
 - [Learn PHP The Right Way](https://github.com/ggelashvili/learnphptherightway-outline)
 - [PHP Quality Assurance](https://phpqa.io/)
