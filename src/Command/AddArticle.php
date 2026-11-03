@@ -12,6 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use thofman\KnowledgeBase\Application\Article\ReplaceTemplateService;
 use thofman\KnowledgeBase\Domain\MarkdownFile\MarkdownFile;
+use thofman\KnowledgeBase\Domain\MarkdownFile\MarkdownFilesDirectory;
 use thofman\KnowledgeBase\Domain\MarkdownFile\Template\NewMarkdownFile;
 use thofman\KnowledgeBase\Domain\MarkdownFile\Template\TemplateMarkdownFile;
 use thofman\KnowledgeBase\Domain\Question\Sanitization\StringSanitizer;
@@ -84,11 +85,12 @@ final class AddArticle extends BaseCommand
         }
 
         $pathnameDirectory = __DIR__ . '/../../knowledge-base-markdown-files';
+        $markdownFilesDirectory = new MarkdownFilesDirectory(new SplFileInfo($pathnameDirectory));
         $authorAndTitle = sprintf('%s_%s', $author, $title);
         $fileName = preg_replace('/[^A-Za-z0-9-_]+/', '_', $authorAndTitle);
         $lowerCasedFilename = strtolower($fileName);
         $fileNameWithExtension = sprintf('%s.md', $lowerCasedFilename);
-        $pathnameNewMarkdownFile = sprintf('%s/%s', $pathnameDirectory, $fileNameWithExtension);
+        $pathnameNewMarkdownFile = sprintf('%s/%s', $markdownFilesDirectory->getPathname(), $fileNameWithExtension);
         $newMarkdownFile = new NewMarkdownFile(new SplFileInfo($pathnameNewMarkdownFile));
         $pathnameTemplateFile = __DIR__ . '/../Domain/MarkdownFile/Template/template.md';
         $templateMarkdownFile = new TemplateMarkdownFile(new MarkdownFile(new SplFileInfo($pathnameTemplateFile)));
