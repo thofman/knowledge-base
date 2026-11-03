@@ -83,12 +83,12 @@ final class AddArticle extends BaseCommand
             return Command::SUCCESS;
         }
 
-        $markdownFilesDirectory = __DIR__ . '/../../knowledge-base-markdown-files';
+        $pathnameDirectory = __DIR__ . '/../../knowledge-base-markdown-files';
         $authorAndTitle = sprintf('%s_%s', $author, $title);
         $fileName = preg_replace('/[^A-Za-z0-9-_]+/', '_', $authorAndTitle);
         $lowerCasedFilename = strtolower($fileName);
         $fileNameWithExtension = sprintf('%s.md', $lowerCasedFilename);
-        $pathnameNewMarkdownFile = sprintf('%s/%s', $markdownFilesDirectory, $fileNameWithExtension);
+        $pathnameNewMarkdownFile = sprintf('%s/%s', $pathnameDirectory, $fileNameWithExtension);
         $newMarkdownFile = new NewMarkdownFile(new SplFileInfo($pathnameNewMarkdownFile));
         $pathnameTemplateFile = __DIR__ . '/../Domain/MarkdownFile/Template/template.md';
         $templateMarkdownFile = new TemplateMarkdownFile(new MarkdownFile(new SplFileInfo($pathnameTemplateFile)));
