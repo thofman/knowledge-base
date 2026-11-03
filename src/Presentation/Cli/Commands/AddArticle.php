@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace thofman\KnowledgeBase\Command;
+namespace thofman\KnowledgeBase\Presentation\Cli\Commands;
 
 use SplFileInfo;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -85,8 +85,8 @@ final class AddArticle extends BaseCommand
             return Command::SUCCESS;
         }
 
-        $pathnameDirectory = __DIR__ . '/../../knowledge-base-markdown-files';
-        $pathnameTemplateFile = __DIR__ . '/../Domain/MarkdownFile/Template/template.md';
+        $pathnameDirectory = __DIR__ . '/../../../../knowledge-base-markdown-files';
+        $pathnameTemplateFile = __DIR__ . '/../../../Domain/MarkdownFile/Template/template.md';
         $markdownFilesDirectory = new MarkdownFilesDirectory(new SplFileInfo($pathnameDirectory));
         $templateMarkdownFile = new TemplateMarkdownFile(new MarkdownFile(new SplFileInfo($pathnameTemplateFile)));
         $articleService = new ArticleService(new NewMarkdownFileService(), new ReplaceTemplateService());

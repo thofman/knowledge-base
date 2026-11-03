@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace thofman\KnowledgeBase\Command;
+namespace thofman\KnowledgeBase\Presentation\Cli\Commands;
 
 use LogicException;
 use Symfony\Component\Console\Command\Command;

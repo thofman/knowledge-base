@@ -10,7 +10,6 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use thofman\KnowledgeBase\Application\Index\IndexService;
-use thofman\KnowledgeBase\Command\BaseCommand;
 use thofman\KnowledgeBase\Domain\MarkdownFile\Index\IndexMarkdownFile;
 use thofman\KnowledgeBase\Domain\MarkdownFile\MarkdownFile;
 use thofman\KnowledgeBase\Domain\MarkdownFile\MarkdownFilesDirectory;
