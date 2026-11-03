@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace thofman\KnowledgeBase\Command;
 
+use SplFileInfo;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
+use thofman\KnowledgeBase\Domain\MarkdownFile\MarkdownFile;
+use thofman\KnowledgeBase\Domain\MarkdownFile\Template\TemplateMarkdownFile;
 use thofman\KnowledgeBase\Domain\Question\Sanitization\StringSanitizer;
 use thofman\KnowledgeBase\Domain\Question\Tag;
 use thofman\KnowledgeBase\Domain\Question\Validation\AlwaysValidValidator;
@@ -85,7 +88,8 @@ final class AddArticle extends BaseCommand
         $fileNameWithExtension = sprintf('%s.md', $lowerCasedFilename);
         $directoryAndFileNameWithExtension = sprintf('%s/%s', $markdownFilesDirectory, $fileNameWithExtension);
         $pathnameTemplateFile = __DIR__ . '/../Domain/MarkdownFile/Template/template.md';
-        copy($pathnameTemplateFile, $directoryAndFileNameWithExtension);
+        $templateMarkdownFile = new TemplateMarkdownFile(new MarkdownFile(new SplFileInfo($pathnameTemplateFile)));
+        copy($templateMarkdownFile->getPathname(), $directoryAndFileNameWithExtension);
         $fileContents = file_get_contents($directoryAndFileNameWithExtension);
         $fileContents1 = preg_replace('/##author##/', $author, $fileContents);
         $fileContents2 = preg_replace('/##title##/', $title, $fileContents1);
