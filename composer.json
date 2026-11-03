@@ -4,6 +4,11 @@
     "type": "library",
     "config": {
         "sort-packages": true,
+        "policy": {
+            "cooldown": {
+                "period": "1 week"
+            }
+        },
         "allow-plugins": {
             "captainhook/captainhook-phar": true,
             "captainhook/hook-installer": true
