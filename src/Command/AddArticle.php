@@ -10,6 +10,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
+use thofman\KnowledgeBase\Application\Article\ArticleService;
 use thofman\KnowledgeBase\Application\Article\NewMarkdownFileService;
 use thofman\KnowledgeBase\Application\Article\ReplaceTemplateService;
 use thofman\KnowledgeBase\Domain\MarkdownFile\MarkdownFile;
@@ -88,12 +89,10 @@ final class AddArticle extends BaseCommand
         $pathnameTemplateFile = __DIR__ . '/../Domain/MarkdownFile/Template/template.md';
         $markdownFilesDirectory = new MarkdownFilesDirectory(new SplFileInfo($pathnameDirectory));
         $templateMarkdownFile = new TemplateMarkdownFile(new MarkdownFile(new SplFileInfo($pathnameTemplateFile)));
-        $newMarkdownFileService = new NewMarkdownFileService();
-        $newMarkdownFile = $newMarkdownFileService->getNewMarkdownFile($markdownFilesDirectory, $author, $title);
-        $replaceTemplateService = new ReplaceTemplateService();
-        $markdownFile = $replaceTemplateService->replaceTemplate(
+        $articleService = new ArticleService(new NewMarkdownFileService(), new ReplaceTemplateService());
+        $markdownFile = $articleService->addArticle(
+            $markdownFilesDirectory,
             $templateMarkdownFile,
-            $newMarkdownFile,
             $author,
             $title,
             $url,
