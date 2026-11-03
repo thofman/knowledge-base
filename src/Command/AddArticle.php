@@ -84,8 +84,8 @@ final class AddArticle extends BaseCommand
         $lowerCasedFilename = strtolower($fileName);
         $fileNameWithExtension = sprintf('%s.md', $lowerCasedFilename);
         $directoryAndFileNameWithExtension = sprintf('%s/%s', $markdownFilesDirectory, $fileNameWithExtension);
-        $templateFile = __DIR__ . '/../Domain/MarkdownFile/Template/template.md';
-        copy($templateFile, $directoryAndFileNameWithExtension);
+        $pathnameTemplateFile = __DIR__ . '/../Domain/MarkdownFile/Template/template.md';
+        copy($pathnameTemplateFile, $directoryAndFileNameWithExtension);
         $fileContents = file_get_contents($directoryAndFileNameWithExtension);
         $fileContents1 = preg_replace('/##author##/', $author, $fileContents);
         $fileContents2 = preg_replace('/##title##/', $title, $fileContents1);
