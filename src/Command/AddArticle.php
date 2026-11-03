@@ -86,17 +86,17 @@ final class AddArticle extends BaseCommand
         $fileName = preg_replace('/[^A-Za-z0-9-_]+/', '_', $authorAndTitle);
         $lowerCasedFilename = strtolower($fileName);
         $fileNameWithExtension = sprintf('%s.md', $lowerCasedFilename);
-        $directoryAndFileNameWithExtension = sprintf('%s/%s', $markdownFilesDirectory, $fileNameWithExtension);
+        $pathnameNewMarkdownFile = sprintf('%s/%s', $markdownFilesDirectory, $fileNameWithExtension);
         $pathnameTemplateFile = __DIR__ . '/../Domain/MarkdownFile/Template/template.md';
         $templateMarkdownFile = new TemplateMarkdownFile(new MarkdownFile(new SplFileInfo($pathnameTemplateFile)));
-        copy($templateMarkdownFile->getPathname(), $directoryAndFileNameWithExtension);
-        $fileContents = file_get_contents($directoryAndFileNameWithExtension);
+        copy($templateMarkdownFile->getPathname(), $pathnameNewMarkdownFile);
+        $fileContents = file_get_contents($pathnameNewMarkdownFile);
         $fileContents1 = preg_replace('/##author##/', $author, $fileContents);
         $fileContents2 = preg_replace('/##title##/', $title, $fileContents1);
         $fileContents3 = preg_replace('/##url##/', $url, $fileContents2);
         $fileContents4 = preg_replace('/##tag##/', $tag->value, $fileContents3);
         $fileContents5 = preg_replace('/##description##/', $description, $fileContents4);
-        file_put_contents($directoryAndFileNameWithExtension, $fileContents5);
+        file_put_contents($pathnameNewMarkdownFile, $fileContents5);
         $output->writeln(sprintf('Article with .md-file "%s" is added', $fileNameWithExtension));
         $output->writeln(
             sprintf(
