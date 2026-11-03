@@ -11,6 +11,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use thofman\KnowledgeBase\Domain\MarkdownFile\MarkdownFile;
+use thofman\KnowledgeBase\Domain\MarkdownFile\Template\NewMarkdownFile;
 use thofman\KnowledgeBase\Domain\MarkdownFile\Template\TemplateMarkdownFile;
 use thofman\KnowledgeBase\Domain\Question\Sanitization\StringSanitizer;
 use thofman\KnowledgeBase\Domain\Question\Tag;
@@ -87,16 +88,17 @@ final class AddArticle extends BaseCommand
         $lowerCasedFilename = strtolower($fileName);
         $fileNameWithExtension = sprintf('%s.md', $lowerCasedFilename);
         $pathnameNewMarkdownFile = sprintf('%s/%s', $markdownFilesDirectory, $fileNameWithExtension);
+        $newMarkdownFile = new NewMarkdownFile(new SplFileInfo($pathnameNewMarkdownFile));
         $pathnameTemplateFile = __DIR__ . '/../Domain/MarkdownFile/Template/template.md';
         $templateMarkdownFile = new TemplateMarkdownFile(new MarkdownFile(new SplFileInfo($pathnameTemplateFile)));
-        copy($templateMarkdownFile->getPathname(), $pathnameNewMarkdownFile);
-        $fileContents = file_get_contents($pathnameNewMarkdownFile);
+        copy($templateMarkdownFile->getPathname(), $newMarkdownFile->getPathname());
+        $fileContents = file_get_contents($newMarkdownFile->getPathname());
         $fileContents1 = preg_replace('/##author##/', $author, $fileContents);
         $fileContents2 = preg_replace('/##title##/', $title, $fileContents1);
         $fileContents3 = preg_replace('/##url##/', $url, $fileContents2);
         $fileContents4 = preg_replace('/##tag##/', $tag->value, $fileContents3);
         $fileContents5 = preg_replace('/##description##/', $description, $fileContents4);
-        file_put_contents($pathnameNewMarkdownFile, $fileContents5);
+        file_put_contents($newMarkdownFile->getPathname(), $fileContents5);
         $output->writeln(sprintf('Article with .md-file "%s" is added', $fileNameWithExtension));
         $output->writeln(
             sprintf(
