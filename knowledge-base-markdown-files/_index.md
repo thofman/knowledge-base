@@ -17,6 +17,7 @@
 
 ## Object-oriented Programming
 
+- [Anthony Hobday - Notes on software quality](anthony_hobday_notes_on_software_quality.md)
 - [Rafael Dohms - Writing code that lasts (Object Calisthenics)](rafael_dohms_writing_code_that_lasts_object_calisthenics_.md)
 - [Tom Scott - The Problem with Time and Timezones (Computerphile)](tom_scott_the_problem_with_time_and_timezones.md)
 
