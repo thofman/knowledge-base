@@ -9,8 +9,6 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
-use thofman\KnowledgeBase\App\Question\TagQuestion;
-use thofman\KnowledgeBase\App\Question\TextQuestion;
 use thofman\KnowledgeBase\Domain\Question\Sanitization\StringSanitizer;
 use thofman\KnowledgeBase\Domain\Question\Tag;
 use thofman\KnowledgeBase\Domain\Question\Validation\AlwaysValidValidator;
@@ -18,6 +16,8 @@ use thofman\KnowledgeBase\Domain\Question\Validation\CompositeValidator;
 use thofman\KnowledgeBase\Domain\Question\Validation\NonEmptyStringValidator;
 use thofman\KnowledgeBase\Domain\Question\Validation\UrlSchemeHttpsValidator;
 use thofman\KnowledgeBase\Domain\Question\Validation\UrlValidator;
+use thofman\KnowledgeBase\Presentation\Cli\Question\TagQuestion;
+use thofman\KnowledgeBase\Presentation\Cli\Question\TextQuestion;
 
 #[AsCommand(name: 'app:add-article', description: 'Add an article')]
 final class AddArticle extends BaseCommand

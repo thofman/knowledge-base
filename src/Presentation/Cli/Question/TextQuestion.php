@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace thofman\KnowledgeBase\App\Question;
+namespace thofman\KnowledgeBase\Presentation\Cli\Question;
 
 use RuntimeException;
 use Symfony\Component\Console\Question\Question;
