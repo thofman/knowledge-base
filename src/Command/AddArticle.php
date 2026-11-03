@@ -85,11 +85,11 @@ final class AddArticle extends BaseCommand
         }
 
         $pathnameDirectory = __DIR__ . '/../../knowledge-base-markdown-files';
+        $pathnameTemplateFile = __DIR__ . '/../Domain/MarkdownFile/Template/template.md';
         $markdownFilesDirectory = new MarkdownFilesDirectory(new SplFileInfo($pathnameDirectory));
+        $templateMarkdownFile = new TemplateMarkdownFile(new MarkdownFile(new SplFileInfo($pathnameTemplateFile)));
         $newMarkdownFileService = new NewMarkdownFileService();
         $newMarkdownFile = $newMarkdownFileService->getNewMarkdownFile($markdownFilesDirectory, $author, $title);
-        $pathnameTemplateFile = __DIR__ . '/../Domain/MarkdownFile/Template/template.md';
-        $templateMarkdownFile = new TemplateMarkdownFile(new MarkdownFile(new SplFileInfo($pathnameTemplateFile)));
         $replaceTemplateService = new ReplaceTemplateService();
         $markdownFile = $replaceTemplateService->replaceTemplate(
             $templateMarkdownFile,
