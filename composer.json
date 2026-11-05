@@ -22,6 +22,7 @@
     "require-dev": {
         "captainhook/captainhook-phar": "^5.29",
         "captainhook/hook-installer": "^1.0",
+        "phpat/phpat": "^0.12",
         "phpstan/phpstan": "^2.3",
         "phpunit/phpunit": "^13.4",
         "ramsey/conventional-commits": "^1.7",
