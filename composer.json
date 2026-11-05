@@ -36,7 +36,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "thofman\\KnowledgeBase\\Tests\\": "tests/"
+            "thofman\\KnowledgeBase\\Tests\\": "tests/",
+            "thofman\\KnowledgeBase\\PhpAT\\": "phpat/"
         }
     },
     "minimum-stability": "stable"

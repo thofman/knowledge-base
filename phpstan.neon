@@ -3,3 +3,14 @@ parameters:
     paths:
         - src
         - tests
+includes:
+    - vendor/phpat/phpat/extension.neon
+services:
+    -
+        class: thofman\KnowledgeBase\PhpAT\Tests\DomainTest
+        tags:
+            - phpat.test
+    -
+        class: thofman\KnowledgeBase\PhpAT\Tests\ApplicationTest
+        tags:
+            - phpat.test
