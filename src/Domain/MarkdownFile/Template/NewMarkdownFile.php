@@ -8,7 +8,7 @@ use DomainException;
 use SplFileInfo;
 use thofman\KnowledgeBase\Domain\ErrorMessage\ErrorMessage;
 
-final class NewMarkdownFile
+final readonly class NewMarkdownFile
 {
     private const string EXTENSION = 'md';
 

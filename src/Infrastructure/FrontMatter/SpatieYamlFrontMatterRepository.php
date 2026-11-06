@@ -12,7 +12,7 @@ use thofman\KnowledgeBase\Domain\MarkdownFile\MarkdownFile;
 use thofman\KnowledgeBase\Domain\MarkdownFile\MarkdownFileCollection;
 use thofman\KnowledgeBase\Domain\Question\Tag;
 
-final class SpatieYamlFrontMatterRepository implements FrontMatterRepository
+final readonly class SpatieYamlFrontMatterRepository implements FrontMatterRepository
 {
     public function getFrontMatterCollection(MarkdownFileCollection $markdownFileCollection): FrontMatterCollection
     {

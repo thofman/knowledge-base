@@ -8,7 +8,7 @@ use SplFileInfo;
 use thofman\KnowledgeBase\Domain\MarkdownFile\MarkdownFilesDirectory;
 use thofman\KnowledgeBase\Domain\MarkdownFile\Template\NewMarkdownFile;
 
-final class NewMarkdownFileService
+final readonly class NewMarkdownFileService
 {
     public function getNewMarkdownFile(
         MarkdownFilesDirectory $markdownFilesDirectory,

@@ -8,7 +8,7 @@ use DomainException;
 use SplFileInfo;
 use thofman\KnowledgeBase\Domain\ErrorMessage\ErrorMessage;
 
-final class MarkdownFilesDirectory
+final readonly class MarkdownFilesDirectory
 {
     public function __construct(
         public SplFileInfo $splFileInfo,

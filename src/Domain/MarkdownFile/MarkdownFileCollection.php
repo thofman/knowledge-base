@@ -9,7 +9,7 @@ use IteratorAggregate;
 /**
  * @template-implements IteratorAggregate<non-negative-int, MarkdownFile>
  */
-final class MarkdownFileCollection implements IteratorAggregate
+final readonly class MarkdownFileCollection implements IteratorAggregate
 {
     /** @var list<MarkdownFile> */
     private array $markdownFiles;

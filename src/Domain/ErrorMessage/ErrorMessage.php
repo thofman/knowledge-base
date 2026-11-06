@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace thofman\KnowledgeBase\Domain\ErrorMessage;
 
-final class ErrorMessage
+final readonly class ErrorMessage
 {
     public static function shouldBe(string $subject, string $expectedValue, string $gotValue): string
     {

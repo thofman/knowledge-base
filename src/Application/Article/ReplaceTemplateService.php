@@ -10,7 +10,7 @@ use thofman\KnowledgeBase\Domain\MarkdownFile\Template\NewMarkdownFile;
 use thofman\KnowledgeBase\Domain\MarkdownFile\Template\TemplateMarkdownFile;
 use thofman\KnowledgeBase\Domain\Question\Tag;
 
-final class ReplaceTemplateService
+final readonly class ReplaceTemplateService
 {
     public function replaceTemplate(
         TemplateMarkdownFile $templateMarkdownFile,

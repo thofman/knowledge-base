@@ -6,7 +6,7 @@ namespace thofman\KnowledgeBase\Infrastructure;
 
 use thofman\KnowledgeBase\Application\IoHelper;
 
-final class FileIoHelper implements IoHelper
+final readonly class FileIoHelper implements IoHelper
 {
     public function write(string $path, string $content): void
     {
