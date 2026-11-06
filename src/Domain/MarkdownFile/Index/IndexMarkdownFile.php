@@ -59,9 +59,4 @@ final readonly class IndexMarkdownFile
         }
         return $return;
     }
-
-    public function reindexAndReplaceContents(FrontMatterCollection $frontMatterCollection): void
-    {
-        file_put_contents($this->markdownFile->getPathname(), $this->reindexAndReturn($frontMatterCollection));
-    }
 }

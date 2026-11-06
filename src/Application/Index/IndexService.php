@@ -27,8 +27,11 @@ final readonly class IndexService
                 $indexMarkdownFile,
             )
         );
-        $indexMarkdownFile->reindexAndReplaceContents(
-            $frontMatterCollection->getSortedAscendingOnTagAuthorAndTitleCollection()
+        file_put_contents(
+            $indexMarkdownFile->getPathname(),
+            $indexMarkdownFile->reindexAndReturn(
+                $frontMatterCollection->getSortedAscendingOnTagAuthorAndTitleCollection(),
+            ),
         );
     }
 }
