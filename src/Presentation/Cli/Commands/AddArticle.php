@@ -89,7 +89,10 @@ final class AddArticle extends BaseCommand
         $pathnameTemplateFile = __DIR__ . '/../../../Domain/MarkdownFile/Template/template.md';
         $markdownFilesDirectory = new MarkdownFilesDirectory(new SplFileInfo($pathnameDirectory));
         $templateMarkdownFile = new TemplateMarkdownFile(new MarkdownFile(new SplFileInfo($pathnameTemplateFile)));
-        $articleService = new ArticleService(new NewMarkdownFileService(), new ReplaceTemplateService());
+        $articleService = new ArticleService(
+            new NewMarkdownFileService(),
+            new ReplaceTemplateService(),
+        );
         $markdownFile = $articleService->addArticle(
             $markdownFilesDirectory,
             $templateMarkdownFile,
