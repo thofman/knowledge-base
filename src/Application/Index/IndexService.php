@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace thofman\KnowledgeBase\Application\Index;
 
+use thofman\KnowledgeBase\Application\IoHelper;
 use thofman\KnowledgeBase\Domain\FrontMatter\FrontMatterRepository;
 use thofman\KnowledgeBase\Domain\MarkdownFile\Index\IndexMarkdownFile;
 use thofman\KnowledgeBase\Domain\MarkdownFile\MarkdownFileRepository;
@@ -14,6 +15,7 @@ final readonly class IndexService
     public function __construct(
         private MarkdownFileRepository $markdownFileRepository,
         private FrontMatterRepository $frontMatterRepository,
+        private IoHelper $ioHelper,
     ) {
     }
 
@@ -27,7 +29,7 @@ final readonly class IndexService
                 $indexMarkdownFile,
             )
         );
-        file_put_contents(
+        $this->ioHelper->write(
             $indexMarkdownFile->getPathname(),
             $indexMarkdownFile->reindexAndReturn(
                 $frontMatterCollection->getSortedAscendingOnTagAuthorAndTitleCollection(),
