@@ -13,6 +13,7 @@ use thofman\KnowledgeBase\Domain\MarkdownFile\MarkdownFile;
 use thofman\KnowledgeBase\Domain\MarkdownFile\Template\NewMarkdownFile;
 use thofman\KnowledgeBase\Domain\MarkdownFile\Template\TemplateMarkdownFile;
 use thofman\KnowledgeBase\Domain\Question\Tag;
+use thofman\KnowledgeBase\Infrastructure\FileIoHelper;
 
 #[Group('integration')]
 final class ReplaceTemplateServiceTest extends TestCase
@@ -40,7 +41,9 @@ final class ReplaceTemplateServiceTest extends TestCase
         file_put_contents($templatePath, $template);
         $newPath = $this->directory . '/new.md';
 
-        $result = new ReplaceTemplateService()
+        $result = new ReplaceTemplateService(
+            new FileIoHelper(),
+        )
             ->replaceTemplate(
                 new TemplateMarkdownFile(new MarkdownFile(new SplFileInfo($templatePath))),
                 new NewMarkdownFile(new SplFileInfo($newPath)),
@@ -67,7 +70,9 @@ final class ReplaceTemplateServiceTest extends TestCase
         file_put_contents($templatePath, '##title## and ##title##');
         $newPath = $this->directory . '/new.md';
 
-        new ReplaceTemplateService()
+        new ReplaceTemplateService(
+            new FileIoHelper(),
+        )
             ->replaceTemplate(
                 new TemplateMarkdownFile(new MarkdownFile(new SplFileInfo($templatePath))),
                 new NewMarkdownFile(new SplFileInfo($newPath)),
@@ -88,7 +93,9 @@ final class ReplaceTemplateServiceTest extends TestCase
         $templatePath = $this->directory . '/template.md';
         file_put_contents($templatePath, '##author##');
 
-        new ReplaceTemplateService()
+        new ReplaceTemplateService(
+            new FileIoHelper(),
+        )
             ->replaceTemplate(
                 new TemplateMarkdownFile(new MarkdownFile(new SplFileInfo($templatePath))),
                 new NewMarkdownFile(new SplFileInfo($this->directory . '/new.md')),

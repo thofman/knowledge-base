@@ -23,6 +23,7 @@ use thofman\KnowledgeBase\Domain\Question\Validation\CompositeValidator;
 use thofman\KnowledgeBase\Domain\Question\Validation\NonEmptyStringValidator;
 use thofman\KnowledgeBase\Domain\Question\Validation\UrlSchemeHttpsValidator;
 use thofman\KnowledgeBase\Domain\Question\Validation\UrlValidator;
+use thofman\KnowledgeBase\Infrastructure\FileIoHelper;
 use thofman\KnowledgeBase\Presentation\Cli\Question\TagQuestion;
 use thofman\KnowledgeBase\Presentation\Cli\Question\TextQuestion;
 
@@ -91,7 +92,9 @@ final class AddArticle extends BaseCommand
         $templateMarkdownFile = new TemplateMarkdownFile(new MarkdownFile(new SplFileInfo($pathnameTemplateFile)));
         $articleService = new ArticleService(
             new NewMarkdownFileService(),
-            new ReplaceTemplateService(),
+            new ReplaceTemplateService(
+                new FileIoHelper(),
+            ),
         );
         $markdownFile = $articleService->addArticle(
             $markdownFilesDirectory,
