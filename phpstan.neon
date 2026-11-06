@@ -3,6 +3,8 @@ parameters:
     paths:
         - src
         - tests
+rules:
+    - thofman\KnowledgeBase\PhpStan\Rules\ForbiddenIoFunctionRule
 includes:
     - vendor/phpat/phpat/extension.neon
 services:
