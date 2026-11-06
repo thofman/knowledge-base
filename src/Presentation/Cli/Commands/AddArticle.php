@@ -11,8 +11,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use thofman\KnowledgeBase\Application\Article\ArticleService;
-use thofman\KnowledgeBase\Application\Article\NewMarkdownFileService;
-use thofman\KnowledgeBase\Application\Article\ReplaceTemplateService;
 use thofman\KnowledgeBase\Domain\MarkdownFile\MarkdownFile;
 use thofman\KnowledgeBase\Domain\MarkdownFile\MarkdownFilesDirectory;
 use thofman\KnowledgeBase\Domain\MarkdownFile\Template\TemplateMarkdownFile;
@@ -23,13 +21,18 @@ use thofman\KnowledgeBase\Domain\Question\Validation\CompositeValidator;
 use thofman\KnowledgeBase\Domain\Question\Validation\NonEmptyStringValidator;
 use thofman\KnowledgeBase\Domain\Question\Validation\UrlSchemeHttpsValidator;
 use thofman\KnowledgeBase\Domain\Question\Validation\UrlValidator;
-use thofman\KnowledgeBase\Infrastructure\FileIoHelper;
 use thofman\KnowledgeBase\Presentation\Cli\Question\TagQuestion;
 use thofman\KnowledgeBase\Presentation\Cli\Question\TextQuestion;
 
 #[AsCommand(name: 'app:add-article', description: 'Add an article')]
 final class AddArticle extends BaseCommand
 {
+    public function __construct(
+        private readonly ArticleService $articleService,
+    ) {
+        parent::__construct();
+    }
+
     public function execute(InputInterface $input, OutputInterface $output): int
     {
         $questionHelper = $this->getQuestionHelper();
@@ -90,13 +93,7 @@ final class AddArticle extends BaseCommand
         $pathnameTemplateFile = __DIR__ . '/../../../Domain/MarkdownFile/Template/template.md';
         $markdownFilesDirectory = new MarkdownFilesDirectory(new SplFileInfo($pathnameDirectory));
         $templateMarkdownFile = new TemplateMarkdownFile(new MarkdownFile(new SplFileInfo($pathnameTemplateFile)));
-        $articleService = new ArticleService(
-            new NewMarkdownFileService(),
-            new ReplaceTemplateService(
-                new FileIoHelper(),
-            ),
-        );
-        $markdownFile = $articleService->addArticle(
+        $markdownFile = $this->articleService->addArticle(
             $markdownFilesDirectory,
             $templateMarkdownFile,
             $author,
